@@ -1,0 +1,32 @@
+"#headerPullView": {
+ backgroundColor:'#e2e7ed',
+    width:320, height:60
+},
+
+"#arrow": {
+	image: WPATH('images/whiteArrow.png'),
+    left: 20, bottom:10,
+    width:23, height:60
+},
+
+"#activityIndicator": {
+	left:20, bottom:13,
+    width:30, height:30	
+},
+
+"#status": {
+    color:'#576c89',
+    font:{fontSize:13, fontWeight:'bold'},
+    text:'Pull down to refresh...',
+    textAlign:'center',
+    left:55, bottom:30,
+    width:200
+},
+
+"#updated": {
+    color:'#576c89',
+    font:{fontSize:12},
+    textAlign:'center',
+    left:55, bottom:15,
+    width:200
+}

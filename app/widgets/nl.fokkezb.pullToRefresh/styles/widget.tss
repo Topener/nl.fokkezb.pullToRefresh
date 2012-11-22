@@ -1,12 +1,14 @@
 "#headerPullView": {
  backgroundColor:'#e2e7ed',
-    width:320, height:60
+    top: 0, right: 0, left: 0,
+    height:60
 },
 
 "#arrow": {
-	image: WPATH('images/whiteArrow.png'),
     left: 20, bottom:10,
-    width:23, height:60
+    width:23, height:60,
+    
+    image: WPATH('images/whiteArrow.png')
 },
 
 "#activityIndicator": {

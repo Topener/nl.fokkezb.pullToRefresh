@@ -56,6 +56,12 @@ function setDate(date) {
 	}
 }
 
+function doTrigger() {
+	doShow();
+	
+	options.loader(finishLoading);
+}
+
 function finishLoading(success) {
 
     if (success) {
@@ -144,8 +150,9 @@ if (args.table && args.loader) {
 	doInit(args);
 }
 
-exports.init = doInit;
-exports.show = doShow;
-exports.hide = doHide;
-exports.date = setDate;
-exports.remove = doRemove;
+exports.init    = doInit;
+exports.show    = doShow;
+exports.hide    = doHide;
+exports.date    = setDate;
+exports.trigger = doTrigger;
+exports.remove  = doRemove;

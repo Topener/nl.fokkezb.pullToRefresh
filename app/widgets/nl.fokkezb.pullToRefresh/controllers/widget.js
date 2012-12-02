@@ -57,6 +57,13 @@ function setDate(date) {
 }
 
 function doTrigger() {
+	
+	if (loading) {
+		return false;
+	}
+	
+	loading = true;
+	
 	doShow();
 	
 	options.loader(finishLoading);
@@ -98,11 +105,8 @@ function dragEndListener(e) {
 	
     if (!pulled && pulling && !loading && offset < -80){
         pulling = false;
-        loading = true;
        
-		doShow();
-
-        options.loader(finishLoading);
+		doTrigger();
     }
 }
 

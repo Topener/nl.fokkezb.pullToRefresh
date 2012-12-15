@@ -4,6 +4,9 @@
 ## Overview
 The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) implementation of the [TableView Refresh with headerPullView](http://docs.appcelerator.com/titanium/latest/#!/guide/TableView_Refresh_with_headerPullView) found in the docs for [Titanium](http://www.appcelerator.com/platform) by [Appcelerator](http://www.appcelerator.com).
 
+## Screenshot
+![Pull to refresh](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/app/widgets/nl.fokkezb.pullToRefresh/docs/screenshot.png)
+
 ## Features
 * Initialize the widget through one simple call.
 * Change (localize) any of the messages displayed.

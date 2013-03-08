@@ -11,7 +11,7 @@ var offset = 0;
 
 function doShow(msg) {
 	
-	if (pulled) {
+	if (!innited || pulled) {
 		return false;
 	}
 	
@@ -28,7 +28,7 @@ function doShow(msg) {
 
 function doHide() {
 	
-	if (!pulled) {
+	if (!initted || !pulled) {
 		return false;
 	}
     
@@ -44,6 +44,10 @@ function doHide() {
 
 function setDate(date) {
 	
+	if (!initted) {
+		return false;
+	}
+	
 	if (date === false) {
 		$.updated.hide();
 	
@@ -58,7 +62,7 @@ function setDate(date) {
 
 function doTrigger() {
 	
-	if (loading) {
+	if (!initted || loading) {
 		return false;
 	}
 	
@@ -112,7 +116,7 @@ function dragEndListener(e) {
 
 function doInit(args) {
 	
-	if (initted) {
+	if (initted || !OS_IOS) {
 		return false;
 	}
 

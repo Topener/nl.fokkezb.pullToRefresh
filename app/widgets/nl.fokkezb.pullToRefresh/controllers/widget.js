@@ -119,6 +119,8 @@ function doInit(args) {
 	if (initted || !OS_IOS) {
 		return false;
 	}
+	
+	initted = true;
 
 	options = _.defaults(args, {
 		msgPull: 'Pull down to refresh...',

@@ -51,12 +51,12 @@ The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/
 The widget can be fully styled without touching the widget source. Use the following ID's in your app's `app.tss` to override the default style:
 
 | ID | Description |
-| -- | ----------- |
-| #ptr | The background of the headerPullView |
-| #ptrCenter | Centers the contents, you probably only want to change `bottom` in conjuction with using the `height` parameter mentioned further on. |
-| #ptrArrow | The arrow image. Use `WPATH('/images/white.png')` to use the white instead of the default grey image, or roll your own. |
-| #ptrIndicator | The activityIndicator showing during load |
-| #ptrText | The text |
+| --------- | ------- |
+| `#ptr` | The background of the headerPullView |
+| `#ptrCenter` | Centers the contents, you probably only want to change `bottom` in conjuction with using the `height` parameter mentioned further on. |
+| `#ptrArrow` | The arrow image. Use `WPATH('/images/white.png')` to use the white instead of the default grey image, or roll your own. |
+| `#ptrIndicator` | The activityIndicator showing during load |
+| `#ptrText` | The text |
 
 ## Parameters
 The only required parameters are the `table` and `loader` parameters, but there's more. I you re-style the widget you might need to change the pulled `height`. And instead of using a `strings.xml` file you can also override the default texts using the following parameters:

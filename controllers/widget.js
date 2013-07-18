@@ -22,7 +22,7 @@ function doShow(msg) {
 	$.ptrIndicator.show();
 
 	options.table.setContentInsets({
-		top : options.offset
+		top : options.height
 	}, {
 		animated : true
 	});
@@ -76,7 +76,7 @@ function scrollListener(e) {
 		return;
 	}
 
-	if (pulling && !loading && offset > -options.offset && offset < 0) {
+	if (pulling && !loading && offset > -options.height && offset < 0) {
 		pulling = false;
 		var unrotate = Ti.UI.create2DMatrix();
 		$.ptrArrow.animate({
@@ -85,7 +85,7 @@ function scrollListener(e) {
 		});
 		$.ptrText.text = options.msgPull;
 
-	} else if (!pulling && !loading && offset < -options.offset) {
+	} else if (!pulling && !loading && offset < -options.height) {
 		pulling = true;
 		var rotate = Ti.UI.create2DMatrix().rotate(180);
 		$.ptrArrow.animate({
@@ -98,7 +98,7 @@ function scrollListener(e) {
 
 function dragEndListener(e) {
 
-	if (!pulled && pulling && !loading && offset < -options.offset) {
+	if (!pulled && pulling && !loading && offset < -options.height) {
 		pulling = false;
 
 		doTrigger();
@@ -117,7 +117,7 @@ function doInit(args) {
 		msgPull : L('ptrPull', 'Pull to refresh...'),
 		msgRelease : L('ptrRelease', 'Release to refresh...'),
 		msgUpdating : L('ptrUpating', 'Updating...'),
-		offset : 50
+		height : 50
 	});
 
 	$.ptrText.text = options.msgPull;

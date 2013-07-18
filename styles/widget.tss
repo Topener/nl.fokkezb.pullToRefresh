@@ -31,6 +31,5 @@
     font: {
     	fontSize: 13,
     	fontWeight: 'bold'
-    },
-    text: L('ptrPull', 'Pull to refresh...')
+    }
 }

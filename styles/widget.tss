@@ -1,34 +1,36 @@
-"#headerPullView": {
- backgroundColor:'#e2e7ed',
-    top: 0, right: 0, left: 0,
-    height:60
-},
+".ptr": {
+	backgroundColor: '#eeeeee'
+}
 
-"#arrow": {
-    left: 20, bottom:10,
-    width:23, height:60,
+".ptrCenter": {
+	bottom: 10,
+	width: Ti.UI.SIZE, height: Ti.UI.SIZE
+}
+
+".ptrArrow": {
+	left: 8,
+	width: 12, height: 30,
+	
+    image: WPATH('/images/grey.png')
+}
+
+".ptrIndicator": {
+	left: 0,
     
-    image: WPATH('images/whiteArrow.png')
-},
+    style: Ti.UI.ActivityIndicatorStyle.DARK
+}
 
-"#activityIndicator": {
-	left:20, bottom:13,
-    width:30, height:30	
-},
+".ptrIndicator[platform=ios]": {
+	style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK
+}
 
-"#status": {
-    color:'#576c89',
-    font:{fontSize:13, fontWeight:'bold'},
-    text:'Pull down to refresh...',
-    textAlign:'center',
-    left:55, bottom:30,
-    width:200
-},
-
-"#updated": {
-    color:'#576c89',
-    font:{fontSize:12},
-    textAlign:'center',
-    left:55, bottom:15,
-    width:200
+".ptrText": {
+    left: 30,
+    
+    color: '#777',
+    font: {
+    	fontSize: 13,
+    	fontWeight: 'bold'
+    },
+    text: L('ptrPull', 'Pull to refresh...')
 }

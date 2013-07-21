@@ -1,17 +1,22 @@
 var args = arguments[0] || {};
 
-var options = null;
+var options = {
+	msgPull : L('ptrPull', 'Pull to refresh...'),
+	msgRelease : L('ptrRelease', 'Release to refresh...'),
+	msgUpdating : L('ptrUpating', 'Updating...'),
+	height : 50
+};
 
-var initted = false;
+var attached = false;
 var pulling = false;
 var pulled = false;
 var loading = false;
 
 var offset = 0;
 
-function doShow(msg) {
+function show(msg) {
 
-	if (!initted || pulled) {
+	if (!attached || pulled) {
 		return false;
 	}
 
@@ -21,7 +26,7 @@ function doShow(msg) {
 	$.ptrArrow.hide();
 	$.ptrIndicator.show();
 
-	options.table.setContentInsets({
+	__parentSymbol.setContentInsets({
 		top : options.height
 	}, {
 		animated : true
@@ -30,13 +35,13 @@ function doShow(msg) {
 	return true;
 }
 
-function doHide() {
+function hide() {
 
-	if (!initted || !pulled) {
+	if (!attached || !pulled) {
 		return false;
 	}
 
-	options.table.setContentInsets({
+	__parentSymbol.setContentInsets({
 		top : 0
 	}, {
 		animated : true
@@ -48,25 +53,20 @@ function doHide() {
 	$.ptrText.text = options.msgPull;
 
 	pulled = false;
+	loading = false;
 }
 
-function doTrigger() {
+function refresh() {
 
-	if (!initted || loading) {
+	if (!attached || loading) {
 		return false;
 	}
 
 	loading = true;
 
-	doShow();
+	show();
 
-	options.loader(finishLoading);
-}
-
-function finishLoading() {
-	doHide();
-
-	loading = false;
+	$.trigger('release');
 }
 
 function scrollListener(e) {
@@ -101,60 +101,59 @@ function dragEndListener(e) {
 	if (!pulled && pulling && !loading && offset < -options.height) {
 		pulling = false;
 
-		doTrigger();
+		refresh();
 	}
 }
 
-function doInit(args) {
-
-	if (initted || !OS_IOS) {
-		return false;
-	}
-
-	initted = true;
-
-	options = _.defaults(args, {
-		msgPull : L('ptrPull', 'Pull to refresh...'),
-		msgRelease : L('ptrRelease', 'Release to refresh...'),
-		msgUpdating : L('ptrUpating', 'Updating...'),
-		height : 50
-	});
-
-	$.ptrText.text = options.msgPull;
-
-	options.table.setHeaderPullView($.ptr);
-
-	options.table.addEventListener('scroll', scrollListener);
-	options.table.addEventListener('dragEnd', dragEndListener);
+function setOptions(_properties) {
+	_.extend(options, _properties);
 }
 
-function doRemove() {
-
-	if (!initted) {
-		return false;
+function attach(setHeaderPullView) {
+	
+	if (attached) {
+		return;
 	}
-
-	options.table.setHeaderPullView(null);
-
-	options.table.removeEventListener('scroll', scrollListener);
-	options.table.removeEventListener('dragEnd', dragEndListener);
-
-	options = null;
-
-	initted = false;
+	
+	// Already done on first call
+	if (setHeaderPullView !== false) {
+		__parentSymbol.headerPullView = $.ptr;	
+	}
+	
+	__parentSymbol.addEventListener('scroll', scrollListener);
+	__parentSymbol.addEventListener('dragEnd', dragEndListener);
+	
+	attached = true;
 	pulling = false;
 	loading = false;
 	shown = false;
-
+	
 	offset = 0;
 }
 
-if (args.table && args.loader) {
-	doInit(args);
+function dettach() {
+
+	if (!attached) {
+		return;
+	}
+
+	__parentSymbol.headerPullView = null;
+
+	__parentSymbol.removeEventListener('scroll', scrollListener);
+	__parentSymbol.removeEventListener('dragEnd', dragEndListener);
+
+	attached = false;
 }
 
-exports.init = doInit;
-exports.show = doShow;
-exports.hide = doHide;
-exports.trigger = doTrigger;
-exports.remove = doRemove;
+delete args.__parentSymbol;
+
+setOptions(args);
+
+attach(false);
+
+exports.setOptions = setOptions;
+exports.show = show;
+exports.hide = hide;
+exports.refresh = refresh;
+exports.dettach = dettach;
+exports.attach = attach;

@@ -1,9 +1,11 @@
 <Alloy>
- 	<View id="ptr" class="ptr">
- 		<View id="prtCenter" class="ptrCenter">
- 			<ImageView id="ptrArrow" class="ptrArrow" />
-			<ActivityIndicator id="ptrIndicator" class="ptrIndicator" />
-			<Label id="ptrText" class="ptrText" />
+	<HeaderPullView platform="ios">
+	 	<View id="ptr" class="ptr">
+	 		<View id="prtCenter" class="ptrCenter">
+	 			<ImageView id="ptrArrow" class="ptrArrow" />
+				<ActivityIndicator id="ptrIndicator" class="ptrIndicator" />
+				<Label id="ptrText" class="ptrText" />
+			</View>
 		</View>
-	</View>
+	</HeaderPullView>
 </Alloy>

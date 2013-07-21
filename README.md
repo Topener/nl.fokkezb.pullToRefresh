@@ -53,11 +53,11 @@ The widget can be fully styled without touching the widget source. Use the follo
 ## Internationalization
 The widget texts can be overridden and translated via your `strings.xml` file, using the following names:
 
-| Name        | Default
-| ----------- | 
-| msgPull     | Pull to refresh...
-| msgRelease  | Release to refresh...
-| msgUpdating | Updating...
+| Name        | Default |
+| ----------- | ------- |
+| msgPull     | Pull to refresh... |
+| msgRelease  | Release to refresh... |
+| msgUpdating | Updating... |
 
 ## Options
 There are no required options to pass via TSS properties or XML attributes, apart from the `onRelase` attribute to bind your callback to the release-event.

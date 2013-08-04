@@ -54,6 +54,8 @@ function hide() {
 
 	pulled = false;
 	loading = false;
+
+	return true;
 }
 
 function refresh() {
@@ -67,6 +69,8 @@ function refresh() {
 	show();
 
 	$.trigger('release');
+
+	return true;
 }
 
 function scrollListener(e) {
@@ -109,32 +113,39 @@ function setOptions(_properties) {
 	_.extend(options, _properties);
 }
 
-function attach(setHeaderPullView) {
+function attach() {
 	
 	if (attached) {
-		return;
+		return false;
 	}
 	
-	// Already done on first call
-	if (setHeaderPullView !== false) {
-		__parentSymbol.headerPullView = $.ptr;	
-	}
-	
+	__parentSymbol.headerPullView = $.ptr;	
+
+	init();
+
+	return true;
+}
+
+function init() {
 	__parentSymbol.addEventListener('scroll', scrollListener);
 	__parentSymbol.addEventListener('dragEnd', dragEndListener);
+
+	$.ptrText.text = options.msgPull;
 	
 	attached = true;
 	pulling = false;
+	pulled = false;
 	loading = false;
-	shown = false;
-	
+
 	offset = 0;
+
+	return;
 }
 
 function dettach() {
 
 	if (!attached) {
-		return;
+		return false;
 	}
 
 	__parentSymbol.headerPullView = null;
@@ -143,13 +154,15 @@ function dettach() {
 	__parentSymbol.removeEventListener('dragEnd', dragEndListener);
 
 	attached = false;
+
+	return true;
 }
 
 delete args.__parentSymbol;
 
 setOptions(args);
 
-attach(false);
+init();
 
 exports.setOptions = setOptions;
 exports.show = show;

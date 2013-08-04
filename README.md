@@ -89,6 +89,8 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | attach     |            | Re-add the *headerPullView* after removal
 
 ## Changelog
+* 1.3.1
+  * Code clean-up 
 * 1.3
   * From now on declared in the XML view instead of the controller! 
   * Splitted `init` into `setOptions` and `attach`

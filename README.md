@@ -30,7 +30,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.3"
+			"nl.fokkezb.pullToRefresh":"1.3.1"
 		}
 	```
 

@@ -1,9 +1,13 @@
-# PullToRefresh Widget
+# Alloy *Pull to Refresh* Widget
 
 ## Overview
-The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) implementation of the [TableView Refresh with headerPullView](http://docs.appcelerator.com/titanium/latest/#!/guide/TableView_Refresh_with_headerPullView) found in the docs for [Titanium](http://www.appcelerator.com/platform) by [Appcelerator](http://www.appcelerator.com).
+The *Pull to Refresh* widget implements the *Pull to Refresh* design pattern for the [Alloy](http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Quick_Start) MVC framework for [Titanium](http://www.appcelerator.com/platform) by [Appcelerator](http://www.appcelerator.com). A Titanium Classic implementation can be found in the [documentation](http://docs.appcelerator.com/titanium/latest/#!/guide/TableView_Refresh_with_headerPullView).
 
-## Screenshots
+Also take a look at my [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.infiniteScroll) widget.
+
+## Overview
+The widgets adds a *HeaderPullView* to a *TableView* that is shown when the users drags the view down when it is already scrolled to the top. An event is triggered so that the implementing controller can reload data.
+
 ![Pull](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/pull.png)
 
 ![Release](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/release.png)
@@ -11,12 +15,13 @@ The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/
 ![Updating](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/updating.png)
 
 ## Features
-* Initialize the widget through one simple call.
-* Change (localize) any of the messages displayed.
-* Manually trigger the widget, e.g. for first load.
+* Add the widget to your *TableView* using just one line of code.
+* Override all styling via your app's `app.tss`.
+* Manually trigger the widget from your controller.
 
 ## Future work
-* Android and Mobile Web compatibility.
+* Full Android, Mobile Web, Tizen and BlackBerry compatibility and testing.
+* Support for *ListView*s.
 
 ## Quick Start
 * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/releases).
@@ -29,7 +34,7 @@ The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/
 		}
 	```
 
-* Add the widget to your TableView:
+* Add the widget to your *TableView*:
 
 	```xml
 	<TableView>
@@ -37,17 +42,17 @@ The *PullToRefresh* widget is an [Alloy](http://projects.appcelerator.com/alloy/
 	</TableView>
 	```
 	
-* In the callback set via `myLoader` make sure you call `$.ptr.hide()` to hide the headerPullView when it is done loading.
+* In the callback set via `myLoader` make sure you call `$.ptr.hide()` to hide the *HeaderPullView* when it is done loading.
 	
 ## Styling
 The widget can be fully styled without touching the widget source. Use the following ID's in your app's `app.tss` to override the default style:
 
 | ID | Description |
 | --------- | ------- |
-| `#ptr` | The background of the headerPullView |
+| `#ptr` | The background of the *HeaderPullView* |
 | `#ptrCenter` | Centers the contents, you probably only want to change `bottom` in conjuction with using the `height` parameter mentioned further on. |
 | `#ptrArrow` | The arrow image. Use `WPATH('/images/white.png')` to use the white instead of the default grey image, or roll your own. |
-| `#ptrIndicator` | The activityIndicator showing during load |
+| `#ptrIndicator` | The *ActivityIndicator* showing during load |
 | `#ptrText` | The text |
 
 ## Internationalization
@@ -62,11 +67,11 @@ The widget texts can be overridden and translated via your `strings.xml` file, u
 ## Options
 There are no required options to pass via TSS properties or XML attributes, apart from the `onRelase` attribute to bind your callback to the release-event.
 
-If you re-style the widget you might need to change the `height` of the headerPullView to keep during load. And instead of using a `strings.xml` file you can also override the default texts using the following parameters:
+If you re-style the widget you might need to change the `height` of the *HeaderPullView* to keep during load. And instead of using a `strings.xml` file you can also override the default texts using the following parameters:
 
 | Parameter | Type | Default |
 | --------- | ---- | ----------- |
-| height | `number` | Height of the headerPullView during load (default: `50`) |
+| height | `number` | Height of the *HeaderPullView* during load (default: `50`) |
 | msgPull | `string` | Overrides `Pull to refresh...` |
 | msgRelease | `string`  | Overrides `Release to refresh...` |
 | msgUpdating | `string` | Overrides `Updating...` |
@@ -76,12 +81,12 @@ You can also manually show and hide the view or trigger the complete cycle of th
 
 | Function   | Parameters | Usage
 | ---------- | ---------- |
-| refresh    |            | Manually trigger pull + release 
-| show       |            | Show the headerPullView
-| hide       |            | Hide the headerPullView
 | setOptions | `object`   | Set any of the options
-| dettach    |            | Remove the headerPullView
-| attach     |            | Re-add the headerPullView after removal
+| refresh    |            | Manually trigger pull + release 
+| show       |            | Show the *headerPullView*
+| hide       |            | Hide the *headerPullView*
+| dettach    |            | Remove the *headerPullView*
+| attach     |            | Re-add the *headerPullView* after removal
 
 ## Changelog
 * 1.3
@@ -98,3 +103,21 @@ You can also manually show and hide the view or trigger the complete cycle of th
   * Renamed `load` parameter to `loader` in line with upcomming widgets.
 * 1.0
   * Initial version
+
+## License
+
+<pre>
+Copyright 2013 Fokke Zandbergen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>

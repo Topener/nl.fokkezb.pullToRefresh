@@ -30,7 +30,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.3.1"
+			"nl.fokkezb.pullToRefresh":"1.3.2"
 		}
 	```
 
@@ -89,7 +89,9 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | attach     |            | Re-add the *headerPullView* after removal
 
 ## Changelog
-* 1.3.1
+* 1.3.2
+  * Typo in `widget.json`
+* 1.3.1 (broken)
   * Code clean-up 
 * 1.3
   * From now on declared in the XML view instead of the controller! 

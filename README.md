@@ -18,9 +18,9 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 * Add the widget to your *TableView* using just one line of code.
 * Override all styling via your app's `app.tss`.
 * Manually trigger the widget from your controller.
+* Compatible with Android and other OS by using *HeaderView*
 
 ## Future work
-* Full Android, Mobile Web, Tizen and BlackBerry compatibility and testing.
 * Support for *ListView*s.
 
 ## Quick Start
@@ -30,7 +30,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.3.2"
+			"nl.fokkezb.pullToRefresh":"1.4"
 		}
 	```
 
@@ -42,8 +42,17 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	</TableView>
 	```
 	
-* In the callback set via `myLoader` make sure you call `$.ptr.hide()` to hide the *HeaderPullView* when it is done loading.
-	
+* In the callback set via `myLoader` make sure you call `e.hide()` to hide the *headerPullView* when it is done loading. For example: 
+
+	```javascript
+	function myLoader(e) {
+		myCollection.fetch({			
+			success: e.hide,
+			error: e.hide
+		});
+	}
+	```
+
 ## Styling
 The widget can be fully styled without touching the widget source. Use the following ID's in your app's `app.tss` to override the default style:
 
@@ -67,11 +76,8 @@ The widget texts can be overridden and translated via your `strings.xml` file, u
 ## Options
 There are no required options to pass via TSS properties or XML attributes, apart from the `onRelase` attribute to bind your callback to the release-event.
 
-If you re-style the widget you might need to change the `height` of the *HeaderPullView* to keep during load. And instead of using a `strings.xml` file you can also override the default texts using the following parameters:
-
 | Parameter | Type | Default |
 | --------- | ---- | ----------- |
-| height | `number` | Height of the *HeaderPullView* during load (default: `50`) |
 | msgPull | `string` | Overrides `Pull to refresh...` |
 | msgRelease | `string`  | Overrides `Release to refresh...` |
 | msgUpdating | `string` | Overrides `Updating...` |
@@ -89,10 +95,8 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | attach     |            | Re-add the *headerPullView* after removal
 
 ## Changelog
-* 1.3.2
-  * Typo in `widget.json`
-* 1.3.1 (broken)
-  * Code clean-up 
+* 1.4
+  * Now compatible with Android and other OS!
 * 1.3
   * From now on declared in the XML view instead of the controller! 
   * Splitted `init` into `setOptions` and `attach`
@@ -102,7 +106,7 @@ You can also manually show and hide the view or trigger the complete cycle of th
   * Retina arrow images, including new (default) grey one
   * Removed text showing last update for more clear view
   * Easier styling
-* 1.1 / 1.1.1
+* 1.1
   * Exposed new API functions to `show`/`hide` the view, set the `date` and `trigger` the widget manually.
   * Renamed `load` parameter to `loader` in line with upcomming widgets.
 * 1.0
@@ -112,6 +116,24 @@ You can also manually show and hide the view or trigger the complete cycle of th
 
 <pre>
 Copyright 2013 Fokke Zandbergen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>
+
+n
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

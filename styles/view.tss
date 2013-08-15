@@ -1,4 +1,7 @@
 ".ptr": {
+    width: Ti.UI.FILL,
+    height: 50,
+    
 	backgroundColor: '#eeeeee'
 }
 

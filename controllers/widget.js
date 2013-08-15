@@ -1,18 +1,27 @@
 var args = arguments[0] || {};
 
 var options = {
-	msgPull : L('ptrPull', 'Pull to refresh...'),
-	msgRelease : L('ptrRelease', 'Release to refresh...'),
-	msgUpdating : L('ptrUpating', 'Updating...'),
-	height : 50
+	msgPull: L('ptrPull', 'Pull to refresh...'),
+	msgRelease: L('ptrRelease', 'Release to refresh...'),
+	msgUpdating: L('ptrUpating', 'Updating...')
 };
 
-var attached = false;
-var pulling = false;
-var pulled = false;
-var loading = false;
+var height = 50,
+	attached = false,
+	pulling = false,
+	pulled = false,
+	loading = false,
+	offset = 0;
 
-var offset = 0;
+// delete special args
+delete args.__parentSymbol;
+delete args.__itemTemplate;
+delete args.$model;
+
+// set args as options
+setOptions(args);
+
+init();
 
 function show(msg) {
 
@@ -22,15 +31,23 @@ function show(msg) {
 
 	pulled = true;
 
-	$.ptrText.text = msg || options.msgUpdating;
-	$.ptrArrow.hide();
-	$.ptrIndicator.show();
+	$.view.ptrText.text = msg || options.msgUpdating;
+	$.view.ptrArrow.hide();
+	$.view.ptrIndicator.show();
 
-	__parentSymbol.setContentInsets({
-		top : options.height
-	}, {
-		animated : true
-	});
+	if (OS_IOS) {
+
+		__parentSymbol.setContentInsets({
+			top: height
+		}, {
+			animated: true
+		});
+
+	} else {
+		__parentSymbol.animate({
+			top: 0
+		});
+	}
 
 	return true;
 }
@@ -41,16 +58,24 @@ function hide() {
 		return false;
 	}
 
-	__parentSymbol.setContentInsets({
-		top : 0
-	}, {
-		animated : true
-	});
+	$.view.ptrIndicator.hide();
+	$.view.ptrArrow.transform = Ti.UI.create2DMatrix();
+	$.view.ptrArrow.show();
+	$.view.ptrText.text = options.msgPull;
 
-	$.ptrIndicator.hide();
-	$.ptrArrow.transform = Ti.UI.create2DMatrix();
-	$.ptrArrow.show();
-	$.ptrText.text = options.msgPull;
+	if (OS_IOS) {
+
+		__parentSymbol.setContentInsets({
+			top: 0
+		}, {
+			animated: true
+		});
+
+	} else {
+		__parentSymbol.animate({
+			top: -height
+		});
+	}
 
 	pulled = false;
 	loading = false;
@@ -68,58 +93,84 @@ function refresh() {
 
 	show();
 
-	$.trigger('release');
+	$.trigger('release', {
+		hide: hide
+	});
 
 	return true;
 }
 
 function scrollListener(e) {
-	offset = e.contentOffset.y;
 
-	if (pulled) {
-		return;
+	if (OS_IOS) {
+
+		if (pulled) {
+			return;
+		}
+
+		offset = e.contentOffset.y;
+
+		if (pulling && !loading && offset > -height && offset < 0) {
+			pulling = false;
+			var unrotate = Ti.UI.create2DMatrix();
+			$.view.ptrArrow.animate({
+				transform: unrotate,
+				duration: 180
+			});
+			$.view.ptrText.text = options.msgPull;
+
+		} else if (!pulling && !loading && offset < -height) {
+			pulling = true;
+			var rotate = Ti.UI.create2DMatrix().rotate(180);
+			$.view.ptrArrow.animate({
+				transform: rotate,
+				duration: 180
+			});
+			$.view.ptrText.text = options.msgRelease;
+		}
+
+	} else {
+		offset = e.firstVisibleItem;
 	}
 
-	if (pulling && !loading && offset > -options.height && offset < 0) {
-		pulling = false;
-		var unrotate = Ti.UI.create2DMatrix();
-		$.ptrArrow.animate({
-			transform : unrotate,
-			duration : 180
-		});
-		$.ptrText.text = options.msgPull;
-
-	} else if (!pulling && !loading && offset < -options.height) {
-		pulling = true;
-		var rotate = Ti.UI.create2DMatrix().rotate(180);
-		$.ptrArrow.animate({
-			transform : rotate,
-			duration : 180
-		});
-		$.ptrText.text = options.msgRelease;
-	}
+	return;
 }
 
 function dragEndListener(e) {
 
-	if (!pulled && pulling && !loading && offset < -options.height) {
+	if (!pulled && pulling && !loading && offset < -height) {
 		pulling = false;
 
 		refresh();
 	}
+
+	return;
+}
+
+function swipeListener(e) {
+
+	if (offset === 0 && e.direction === 'down') {
+		refresh();
+	}
+
+	return;
 }
 
 function setOptions(_properties) {
 	_.extend(options, _properties);
+
+	return;
 }
 
 function attach() {
-	
+
 	if (attached) {
 		return false;
 	}
-	
-	__parentSymbol.headerPullView = $.ptr;	
+
+	if (OS_IOS) {
+		__parentSymbol.headerPullView = $.view.ptr;
+	}
 
 	init();
 
@@ -128,16 +179,25 @@ function attach() {
 
 function init() {
 	__parentSymbol.addEventListener('scroll', scrollListener);
-	__parentSymbol.addEventListener('dragEnd', dragEndListener);
 
-	$.ptrText.text = options.msgPull;
-	
+	height = $.view.ptr.height;
 	attached = true;
 	pulling = false;
 	pulled = false;
 	loading = false;
 
 	offset = 0;
+
+	if (OS_IOS) {
+		__parentSymbol.addEventListener('dragEnd', dragEndListener);
+
+	} else {
+		__parentSymbol.top = -height;
+
+		__parentSymbol.addEventListener('swipe', swipeListener);
+	}
+
+	$.view.ptrText.text = options.msgPull;
 
 	return;
 }
@@ -148,21 +208,23 @@ function dettach() {
 		return false;
 	}
 
-	__parentSymbol.headerPullView = null;
-
 	__parentSymbol.removeEventListener('scroll', scrollListener);
-	__parentSymbol.removeEventListener('dragEnd', dragEndListener);
+
+	if (OS_IOS) {
+		__parentSymbol.removeEventListener('dragEnd', dragEndListener);
+
+		__parentSymbol.headerPullView = null;
+
+	} else {
+		__parentSymbol.removeEventListener('swipe', swipeListener);
+
+		hide();
+	}
 
 	attached = false;
 
 	return true;
 }
-
-delete args.__parentSymbol;
-
-setOptions(args);
-
-init();
 
 exports.setOptions = setOptions;
 exports.show = show;

@@ -1,11 +1,8 @@
 <Alloy>
 	<HeaderPullView platform="ios">
-	 	<View id="ptr" class="ptr">
-	 		<View id="prtCenter" class="ptrCenter">
-	 			<ImageView id="ptrArrow" class="ptrArrow" />
-				<ActivityIndicator id="ptrIndicator" class="ptrIndicator" />
-				<Label id="ptrText" class="ptrText" />
-			</View>
-		</View>
+        <Widget src="nl.fokkezb.pullToRefresh" name="view" id="view" />
 	</HeaderPullView>
+    <HeaderView platform="android">
+        <Widget src="nl.fokkezb.pullToRefresh" name="view" id="view" />
+    </HeaderView>
 </Alloy>

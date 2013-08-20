@@ -37,9 +37,13 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 * Add the widget to your *TableView*:
 
 	```xml
-	<TableView>
-	  <Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myLoader" />
-	</TableView>
+	<Alloy>
+	  <Collection src="myCollection" />
+	  <TableView dataCollection="myCollection">
+	    <Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myLoader" />
+	    <TableViewRow title="{myColumn}" />
+	  </TableView>
+	</Alloy>
 	```
 	
 * In the callback set via `myLoader` make sure you call `e.hide()` to hide the *headerPullView* when it is done loading. For example: 

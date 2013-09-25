@@ -69,6 +69,7 @@ The widget can be fully styled without touching the widget source. Use the follo
 | `#ptrArrow` | The arrow image. Use `WPATH('/images/white.png')` to use the white instead of the default grey image, or roll your own. |
 | `#ptrIndicator` | The *ActivityIndicator* showing during load |
 | `#ptrText` | The text |
+| `#ptrLine` | The line separating the widget and the table |
 
 ## Internationalization
 The widget texts can be overridden and translated via your `strings.xml` file, using the following names:
@@ -105,6 +106,7 @@ You can also manually show and hide the view or trigger the complete cycle of th
 * 1.5
   * New `top` option for compatibility with `Ti.UI.Window.extendEdges` on iOS7
   * Arrow now properly hidden on Android, using opacity
+  * Default style updated to match Twitter on iOS7
 * 1.4
   * Now compatible with Android and other OS!
 * 1.3

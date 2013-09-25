@@ -8,6 +8,8 @@ Also take a look at my [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.i
 ## Overview
 The widgets adds a *HeaderPullView* to a *TableView* that is shown when the users drags the view down when it is already scrolled to the top. An event is triggered so that the implementing controller can reload data.
 
+![Extend edges](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/extend.png)
+
 ![Pull](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/pull.png)
 
 ![Release](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/release.png)

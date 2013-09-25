@@ -30,7 +30,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.4"
+			"nl.fokkezb.pullToRefresh":"1.5"
 		}
 	```
 
@@ -78,13 +78,14 @@ The widget texts can be overridden and translated via your `strings.xml` file, u
 | msgUpdating | Updating... |
 
 ## Options
-There are no required options to pass via TSS properties or XML attributes, apart from the `onRelase` attribute to bind your callback to the release-event.
+There are no required options to pass via TSS properties or XML attributes, apart from the `onRelease` attribute to bind your callback to the release-event.
 
 | Parameter | Type | Default |
 | --------- | ---- | ----------- |
 | msgPull | `string` | Overrides `Pull to refresh...` |
 | msgRelease | `string`  | Overrides `Release to refresh...` |
 | msgUpdating | `string` | Overrides `Updating...` |
+| top **(iOS)**| `number` | If the top of the table is covered by another view - e.g. when using `Ti.UI.Window.extendEges` - set this to the height of that view (`60` for both status and navigation bar) |
 
 ## Methods
 You can also manually show and hide the view or trigger the complete cycle of the widget. You could use this for the first load when your window opens.
@@ -99,6 +100,9 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | attach     |            | Re-add the *headerPullView* after removal
 
 ## Changelog
+* 1.5
+  * New `top` option for compatibility with `Ti.UI.Window.extendEdges` on iOS7
+  * Arrow now properly hidden on Android, using opacity
 * 1.4
   * Now compatible with Android and other OS!
 * 1.3

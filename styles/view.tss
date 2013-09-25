@@ -7,7 +7,8 @@
 
 ".ptrCenter": {
 	bottom: 10,
-	width: Ti.UI.SIZE, height: Ti.UI.SIZE
+	width: Ti.UI.SIZE, height: Ti.UI.SIZE,
+    visible: false
 }
 
 ".ptrArrow": {

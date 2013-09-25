@@ -3,11 +3,13 @@ var args = arguments[0] || {};
 var options = {
 	msgPull: L('ptrPull', 'Pull to refresh...'),
 	msgRelease: L('ptrRelease', 'Release to refresh...'),
-	msgUpdating: L('ptrUpating', 'Updating...')
+	msgUpdating: L('ptrUpating', 'Updating...'),
+	top: 60
 };
 
 var height = 50,
 	attached = false,
+	hidden = true,
 	pulling = false,
 	pulled = false,
 	loading = false,
@@ -30,15 +32,17 @@ function show(msg) {
 	}
 
 	pulled = true;
+	hidden = false;
 
 	$.view.ptrText.text = msg || options.msgUpdating;
-	$.view.ptrArrow.hide();
+	$.view.ptrArrow.opacity = 0;
 	$.view.ptrIndicator.show();
+	$.view.prtCenter.show();
 
 	if (OS_IOS) {
 
 		__parentSymbol.setContentInsets({
-			top: height
+			top: options.top + height
 		}, {
 			animated: true
 		});
@@ -60,23 +64,30 @@ function hide() {
 
 	$.view.ptrIndicator.hide();
 	$.view.ptrArrow.transform = Ti.UI.create2DMatrix();
-	$.view.ptrArrow.show();
+	$.view.ptrArrow.opacity = 1;
 	$.view.ptrText.text = options.msgPull;
 
 	if (OS_IOS) {
 
 		__parentSymbol.setContentInsets({
-			top: 0
+			top: options.top
 		}, {
-			animated: true
+			animated: true,
+			duration: 250
 		});
 
 	} else {
 		__parentSymbol.animate({
-			top: -height
+			top: 0 - height,
+			duration: 250
 		});
 	}
 
+	setTimeout(function () {
+		$.view.prtCenter.hide();
+	}, 250);
+
+	hidden = true;
 	pulled = false;
 	loading = false;
 
@@ -110,7 +121,19 @@ function scrollListener(e) {
 
 		offset = e.contentOffset.y;
 
-		if (pulling && !loading && offset > -height && offset < 0) {
+		if (offset >= 0 - options.top) {
+
+			if (!hidden) {
+				$.view.prtCenter.hide();
+				hidden = true;
+			}
+
+		} else if (hidden) {
+			$.view.prtCenter.show();
+			hidden = false;
+		}
+
+		if (pulling && !loading && offset > 0 - options.top - height) {
 			pulling = false;
 			var unrotate = Ti.UI.create2DMatrix();
 			$.view.ptrArrow.animate({
@@ -119,7 +142,7 @@ function scrollListener(e) {
 			});
 			$.view.ptrText.text = options.msgPull;
 
-		} else if (!pulling && !loading && offset < -height) {
+		} else if (!pulling && !loading && offset <= 0 - options.top - height) {
 			pulling = true;
 			var rotate = Ti.UI.create2DMatrix().rotate(180);
 			$.view.ptrArrow.animate({
@@ -138,7 +161,7 @@ function scrollListener(e) {
 
 function dragEndListener(e) {
 
-	if (!pulled && pulling && !loading && offset < -height) {
+	if (!pulled && pulling && !loading && offset <= 0 - options.top - height) {
 		pulling = false;
 
 		refresh();
@@ -192,7 +215,7 @@ function init() {
 		__parentSymbol.addEventListener('dragEnd', dragEndListener);
 
 	} else {
-		__parentSymbol.top = -height;
+		__parentSymbol.top = 0 - height;
 
 		__parentSymbol.addEventListener('swipe', swipeListener);
 	}

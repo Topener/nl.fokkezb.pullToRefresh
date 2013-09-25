@@ -31,6 +31,7 @@
 
 ".ptrText": {
     left: 30,
+    wordWrap: false,
     
     color: '#8899a6',
 

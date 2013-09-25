@@ -179,8 +179,8 @@ function swipeListener(e) {
 	return;
 }
 
-function setOptions(_properties) {
-	_.extend(options, _properties);
+function setOptions(_options) {
+	_.extend(options, _options);
 
 	return;
 }

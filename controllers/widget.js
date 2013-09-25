@@ -4,7 +4,7 @@ var options = {
 	msgPull: L('ptrPull', 'Pull to refresh...'),
 	msgRelease: L('ptrRelease', 'Release to refresh...'),
 	msgUpdating: L('ptrUpating', 'Updating...'),
-	top: 60
+	top: 0
 };
 
 var height = 50,

@@ -92,14 +92,14 @@ There are no required options to pass via TSS properties or XML attributes, apar
 ## Methods
 You can also manually show and hide the view or trigger the complete cycle of the widget. You could use this for the first load when your window opens.
 
-| Function   | Parameters | Usage
-| ---------- | ---------- |
-| setOptions | `object`   | Set any of the options
-| refresh    |            | Manually trigger pull + release 
-| show       |            | Show the *headerPullView*
-| hide       |            | Hide the *headerPullView*
-| dettach    |            | Remove the *headerPullView*
-| attach     |            | Re-add the *headerPullView* after removal
+| Function   | Parameters | Usage |
+| ---------- | ---------- | ----- |
+| setOptions | `object`   | Set any of the options |
+| refresh    |            | Manually trigger pull + release |
+| show       |            | Show the *headerPullView* |
+| hide       |            | Hide the *headerPullView* |
+| dettach    |            | Remove the *headerPullView* |
+| attach     |            | Re-add the *headerPullView* after removal |
 
 ## Changelog
 * 1.5
@@ -136,9 +136,6 @@ You may obtain a copy of the License at
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-</pre>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 </pre>

@@ -88,7 +88,7 @@ There are no required options to pass via TSS properties or XML attributes, apar
 | msgPull | `string` | Overrides `Pull to refresh...` |
 | msgRelease | `string`  | Overrides `Release to refresh...` |
 | msgUpdating | `string` | Overrides `Updating...` |
-| top **(iOS)**| `number` | If the top of the table is covered by another view - e.g. when using `Ti.UI.Window.extendEges` - set this to the height of that view (`60` for both status and navigation bar) |
+| top **(iOS)**| `number` | If the top of the table is covered by another view - e.g. when using `Ti.UI.Window.extendEges` - set this to the height of that view (`64` for both status and navigation bar) |
 
 ## Methods
 You can also manually show and hide the view or trigger the complete cycle of the widget. You could use this for the first load when your window opens.

@@ -8,6 +8,6 @@
             <Label id="ptrText" class="ptrText" />
         </View>
         
-        <View id="prtLine" class="ptrLine" />
+        <View id="ptrLine" class="ptrLine" />
     </View>
 </Alloy>

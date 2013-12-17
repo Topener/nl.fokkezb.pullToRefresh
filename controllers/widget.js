@@ -23,7 +23,10 @@ delete args.$model;
 // set args as options
 setOptions(args);
 
-init();
+// Not in all Alloy versions (1.3.0-cr)
+if (__parentSymbol) {
+	init();
+}
 
 function show(msg) {
 
@@ -200,7 +203,13 @@ function attach() {
 	return true;
 }
 
-function init() {
+function init(_table) {
+
+	// Override __parentSymbol
+	if (_table) {
+		__parentSymbol = _table;
+	}
+
 	__parentSymbol.addEventListener('scroll', scrollListener);
 
 	height = $.view.ptr.height;
@@ -255,3 +264,4 @@ exports.hide = hide;
 exports.refresh = refresh;
 exports.dettach = dettach;
 exports.attach = attach;
+exports.init = init;

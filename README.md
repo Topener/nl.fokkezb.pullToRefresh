@@ -1,3 +1,7 @@
+**NOTE:** As from Titanium 3.2.0, the native *UIRefreshControl* will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button is more user-friendly then this implementation. Therefor I will not actively maintain this module any further.
+
+---------------------
+
 # Alloy *Pull to Refresh* Widget
 
 ## Overview
@@ -32,7 +36,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.5"
+			"nl.fokkezb.pullToRefresh":"1.5.1"
 		}
 	```
 
@@ -101,8 +105,11 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | hide       |            | Hide the *headerPullView* |
 | dettach    |            | Remove the *headerPullView* |
 | attach     |            | Re-add the *headerPullView* after removal |
+| init       | `Ti.UI.TableView` | Manually init the widget if it's the child element of the table, or to work around [TC-3417](https://jira.appcelerator.org/browse/TC-3417) in Alloy 1.3.0-cr.
 
 ## Changelog
+* 1.5.1.
+  * Workaround for regression in Alloy 1.3.0-cr
 * 1.5
   * New `top` option for compatibility with `Ti.UI.Window.extendEdges` on iOS7
   * Arrow now properly hidden on Android, using opacity

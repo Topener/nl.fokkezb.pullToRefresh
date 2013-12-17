@@ -3,7 +3,7 @@
 	"name": "nl.fokkezb.pullToRefresh",
 	"description" : "Implementation of the pull-to-refresh header for table views.",
 	"author": "Fokke Zandbergen",
-	"version": "1.5",
+	"version": "1.5.1",
 	"copyright":"Copyright (c) 2013",
 	"license":"Apache 2.0",
 	"min-alloy-version": "1.1",

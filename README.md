@@ -110,6 +110,7 @@ You can also manually show and hide the view or trigger the complete cycle of th
 ## Changelog
 * 1.5.1.
   * Workaround for regression in Alloy 1.3.0-cr
+  * Closes #17 by checking source of events
 * 1.5
   * New `top` option for compatibility with `Ti.UI.Window.extendEdges` on iOS7
   * Arrow now properly hidden on Android, using opacity

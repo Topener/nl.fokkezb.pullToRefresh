@@ -116,6 +116,11 @@ function refresh() {
 
 function scrollListener(e) {
 
+	// Closes #17
+	if (e.source !== __parentSymbol) {
+		return;
+	}
+
 	if (OS_IOS) {
 
 		if (pulled) {
@@ -163,6 +168,11 @@ function scrollListener(e) {
 }
 
 function dragEndListener(e) {
+
+	// Closes #17
+	if (e.source !== __parentSymbol) {
+		return;
+	}
 
 	if (!pulled && pulling && !loading && offset <= 0 - options.top - height) {
 		pulling = false;

@@ -30,13 +30,16 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 * Support for *ListView*s.
 
 ## Quick Start
-* Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/releases).
-* Unzip the file to `app/widgets/nl.fokkezb.pullToRefresh`.
-* Add the widget as a dependency to your `app/config.json` file:
+
+* Use `gittio install nl.fokkezb.pullToRefresh` to install via [gitTio](http://gitt.io/cli) or:
+    
+  * Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/releases).
+  * Unzip the file to `app/widgets/nl.fokkezb.pullToRefresh`.
+  * Add the widget as a dependency to your `app/config.json` file:
 	
 	```javascript
 		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.5.1"
+			"nl.fokkezb.pullToRefresh":"1.5.2"
 		}
 	```
 
@@ -114,7 +117,9 @@ You can also manually show and hide the view or trigger the complete cycle of th
 | init       | `Ti.UI.TableView` | Manually init the widget if it's the child element of the table, or to work around [TC-3417](https://jira.appcelerator.org/browse/TC-3417) in Alloy 1.3.0-cr.
 
 ## Changelog
-* 1.5.1.
+* 1.5.2
+  * Instructions for Alloy 1.3.0 and giTio
+* 1.5.1
   * Workaround for regression in Alloy 1.3.0-cr
   * Closes #17 by checking source of events
 * 1.5

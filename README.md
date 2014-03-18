@@ -1,8 +1,6 @@
-**NOTE:** As from Titanium 3.2.0, the native *UIRefreshControl* will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button is more user-friendly then this implementation. Therefor I will not actively maintain this module any further.
+> **NOTE:** As from Titanium 3.2.0, the native *UIRefreshControl* will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button is more user-friendly then this implementation. Therefor I will not actively maintain this module any further.
 
----------------------
-
-# Alloy *Pull to Refresh* Widget
+# Alloy *Pull to Refresh* Widget [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/)
 
 ## Overview
 The *Pull to Refresh* widget implements the *Pull to Refresh* design pattern for the [Alloy](http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Quick_Start) MVC framework for [Titanium](http://www.appcelerator.com/platform) by [Appcelerator](http://www.appcelerator.com). A Titanium Classic implementation can be found in the [documentation](http://docs.appcelerator.com/titanium/latest/#!/guide/TableView_Refresh_with_headerPullView).
@@ -29,7 +27,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 ## Future work
 * Support for *ListView*s.
 
-## Quick Start
+## Quick Start [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
 
 * Use `gittio install nl.fokkezb.pullToRefresh` to install via [gitTio](http://gitt.io/cli) or:
     

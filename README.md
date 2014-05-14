@@ -53,7 +53,7 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	</Alloy>
 	```
 
-* Only in Alloy 1.3.0 (shoud be fixed in 1.3.1) you have to manually bind the table from the controller:
+* Since Alloy 1.3.0 you have to manually bind the table from the controller:
 
 	```
 	$.ptr.init($.table);

@@ -14,6 +14,7 @@ var height = 50,
 	pulled = false,
 	loading = false,
 	offset = 0;
+	swipeAdded = false;     // for Android only
 
 // delete special args
 delete args.__parentSymbol;
@@ -162,6 +163,20 @@ function scrollListener(e) {
 
 	} else {
 		offset = e.firstVisibleItem;
+		
+		if (offset == 0) {
+		    	if (!swipeAdded) {
+		    		// if the list scroll to the top, add the swipe listener
+	    		    	swipeAdded = true;
+	    		    	__parentSymbol.addEventListener('swipe', swipeListener);
+    			}
+		} else {
+    			if (swipeAdded) {
+    				// if the list not showling the top row, no pull need to be listened
+			        swipeAdded = false;
+			        __parentSymbol.removeEventListener('swipe', swipeListener);
+		        }
+		}
 	}
 
 	return;
@@ -187,8 +202,14 @@ function swipeListener(e) {
 
 	if (offset === 0 && e.direction === 'down') {
 		refresh();
+	} else if (e.diretion === 'up') {
+	    	if (swipeAdded) {
+	    		// remove swipe since the "swipe up" is already no need to pull
+    	    		swipeAdded = false;
+    			__parentSymbol.removeEventListener('swipe', swipeListener);
+    		}
 	}
-
+	
 	return;
 }
 
@@ -236,7 +257,8 @@ function init(_table) {
 	} else {
 		__parentSymbol.top = 0 - height;
 
-		__parentSymbol.addEventListener('swipe', swipeListener);
+    		swipeAdded = true;
+    		__parentSymbol.addEventListener('swipe', swipeListener);
 	}
 
 	$.view.ptrText.text = options.msgPull;

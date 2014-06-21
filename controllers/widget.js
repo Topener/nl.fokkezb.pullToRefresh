@@ -202,7 +202,7 @@ function swipeListener(e) {
 
 	if (offset === 0 && e.direction === 'down') {
 		refresh();
-	} else if (e.diretion === 'up') {
+	} else if (e.direction === 'up') {
 	    	if (swipeAdded) {
 	    		// remove swipe since the "swipe up" is already no need to pull
     	    		swipeAdded = false;

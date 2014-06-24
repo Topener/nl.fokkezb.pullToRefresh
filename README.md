@@ -70,6 +70,9 @@ The widgets adds a *HeaderPullView* to a *TableView* that is shown when the user
 	}
 	```
 
+## Android
+The support for Android is there, but minimal. Android doesn't have a `headerPullView` so I worked around using `headerView`, but the event API's on Android didn't allow me to make the UX as smooth as on iOS. Please also note that to "hide" the `headerView` the widget gives the table a negative top-position. This means you'll have to play with the other views on the screen so that the table is properly clipped by it's parent when it "hides".
+
 ## Styling
 The widget can be fully styled without touching the widget source. Use the following ID's in your app's `app.tss` to override the default style:
 

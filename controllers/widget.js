@@ -52,9 +52,7 @@ function show(msg) {
 		});
 
 	} else {
-		__parentSymbol.animate({
-			top: 0
-		});
+		__parentSymbol.scrollToTop(0);
 	}
 
 	return true;
@@ -81,10 +79,7 @@ function hide() {
 		});
 
 	} else {
-		__parentSymbol.animate({
-			top: 0 - height,
-			duration: 250
-		});
+		__parentSymbol.scrollToTop(1);
 	}
 
 	setTimeout(function () {

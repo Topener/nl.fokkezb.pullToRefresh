@@ -1,4 +1,4 @@
-> **NOTE:** As from Titanium 3.2.0, the native *UIRefreshControl* will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button is more user-friendly then this implementation. Therefor I will not actively maintain this module any further.
+> **NOTE:** As from Titanium 3.2.0, the native [UIRefreshControl](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.RefreshControl) will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button or the native [SwipeRefreshLayout](https://github.com/raymondkam/Ti.SwipeRefreshLayout) is more user-friendly then this implementation. Therefor I will **not actively maintain this module** any further.
 
 # Alloy *Pull to Refresh* Widget [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/)
 

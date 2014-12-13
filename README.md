@@ -1,117 +1,74 @@
-**NOTE:** As from Titanium 3.2.0, the native *UIRefreshControl* will be supported for iOS. The Android version of this widget may still be of use to you but personally I think a refresh button is more user-friendly then this implementation. Therefor I will not actively maintain this module any further.
-
----------------------
-
 # Alloy *Pull to Refresh* Widget
+[![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://appcelerator.com/alloy/)
 
-## Overview
-The *Pull to Refresh* widget implements the *Pull to Refresh* design pattern for the [Alloy](http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Quick_Start) MVC framework for [Titanium](http://www.appcelerator.com/platform) by [Appcelerator](http://www.appcelerator.com). A Titanium Classic implementation can be found in the [documentation](http://docs.appcelerator.com/titanium/latest/#!/guide/TableView_Refresh_with_headerPullView).
+The [Alloy](http://appcelerator.com/alloy) *Pull to Refresh* widget is a cross-platform no-brainer wrapper of [Ti.UI.RefreshControl](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.RefreshControl) for iOS and Ivan's fork of [Ti.SwipeRefreshLayout](https://github.com/iskugor/Ti.SwipeRefreshLayout) for Android.
 
-Also take a look at my [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.infiniteScroll) widget.
+Before version 2.0.0 this widget emulated the native Pull to Refresh concept for `Ti.UI.TableView` on both platforms. Since 2.0.0 it uses the native controls now available in Titanium Core and through Ivan's module for both `Ti.UI.TableView` and `Ti.UI.ListView`.
 
-## Overview
-The widgets adds a *HeaderPullView* to a *TableView* that is shown when the users drags the view down when it is already scrolled to the top. An event is triggered so that the implementing controller can reload data.
+Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.infiniteScroll) widget.
 
-![Extend edges](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/extend.png)
+## Screencasts
 
-![Pull](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/pull.png)
+### Android
 
-![Release](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/release.png)
+![Android](android.gif)
 
-![Updating](https://raw.github.com/FokkeZB/nl.fokkezb.pullToRefresh/master/docs/updating.png)
+### iOS
 
-## Features
-* Add the widget to your *TableView* using just one line of code.
-* Override all styling via your app's `app.tss`.
-* Manually trigger the widget from your controller.
-* Compatible with Android and other OS by using *HeaderView*
+![iOS](ios.gif)
 
-## Future work
-* Support for *ListView*s.
+## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
+1. If you need Android support, install Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout) via [gitTio](http://gitt.io):
 
-## Quick Start
-* Download the latest [release](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/releases).
-* Unzip the file to `app/widgets/nl.fokkezb.pullToRefresh`.
-* Add the widget as a dependency to your `app/config.json` file:
-	
-	```javascript
-		"dependencies": {
-			"nl.fokkezb.pullToRefresh":"1.5.1"
+    `gittio install com.rkam.swiperefreshlayout`
+
+2. Then install [nl.fokkezb.pullToRefresh](http://gitt.io/component/nl.fokkezb.drawer) via [gitTio](http://gitt.io) as well:
+
+	`gittio install nl.fokkezb.drawer`
+
+3. Wrap the widget around your `<ListView>` or `<TableView>` in the view:
+
+		<Alloy>
+			<Collection src="myCollection" />
+			<Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myRefresher">
+				<ListView>
+					<ListSection dataCollection="myCollection">
+						<ListItem title="{title}" />
+					</ListSection>
+				</ListView>
+			</Widget>
+		</Alloy>
+
+4. Add your `myRefresher` function to the controller and call the `e.hide()` callback when you're done:
+
+		function myRefresher(e) {
+			myCollection.fetch({
+				success: e.hide,
+				error: e.hide
+			});
 		}
-	```
 
-* Add the widget to your *TableView*:
+5. Call the widget's `refresh()` to programmatically trigger the (initial) refresh:
 
-	```xml
-	<Alloy>
-	  <Collection src="myCollection" />
-	  <TableView dataCollection="myCollection">
-	    <Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myLoader" />
-	    <TableViewRow title="{myColumn}" />
-	  </TableView>
-	</Alloy>
-	```
-	
-* In the callback set via `myLoader` make sure you call `e.hide()` to hide the *headerPullView* when it is done loading. For example: 
-
-	```javascript
-	function myLoader(e) {
-		myCollection.fetch({			
-			success: e.hide,
-			error: e.hide
-		});
-	}
-	```
-
-## Styling
-The widget can be fully styled without touching the widget source. Use the following ID's in your app's `app.tss` to override the default style:
-
-| ID | Description |
-| --------- | ------- |
-| `#ptr` | The background of the *HeaderPullView* |
-| `#ptrCenter` | Centers the contents, you probably only want to change `bottom` in conjuction with using the `height` parameter mentioned further on. |
-| `#ptrArrow` | The arrow image. Use `WPATH('/images/white.png')` to use the white instead of the default grey image, or roll your own. |
-| `#ptrIndicator` | The *ActivityIndicator* showing during load |
-| `#ptrText` | The text |
-| `#ptrLine` | The line separating the widget and the table |
-
-## Internationalization
-The widget texts can be overridden and translated via your `strings.xml` file, using the following names:
-
-| Name        | Default |
-| ----------- | ------- |
-| msgPull     | Pull to refresh... |
-| msgRelease  | Release to refresh... |
-| msgUpdating | Updating... |
-
-## Options
-There are no required options to pass via TSS properties or XML attributes, apart from the `onRelease` attribute to bind your callback to the release-event.
-
-| Parameter | Type | Default |
-| --------- | ---- | ----------- |
-| msgPull | `string` | Overrides `Pull to refresh...` |
-| msgRelease | `string`  | Overrides `Release to refresh...` |
-| msgUpdating | `string` | Overrides `Updating...` |
-| top **(iOS)**| `number` | If the top of the table is covered by another view - e.g. when using `Ti.UI.Window.extendEges` - set this to the height of that view (`64` for both status and navigation bar) |
-
+		$.ptr.refresh();
+		
 ## Methods
-You can also manually show and hide the view or trigger the complete cycle of the widget. You could use this for the first load when your window opens.
+Both platforms share the same API:
 
 | Function   | Parameters | Usage |
 | ---------- | ---------- | ----- |
-| setOptions | `object`   | Set any of the options |
 | refresh    |            | Manually trigger pull + release |
-| show       |            | Show the *headerPullView* |
-| hide       |            | Hide the *headerPullView* |
-| dettach    |            | Remove the *headerPullView* |
-| attach     |            | Re-add the *headerPullView* after removal |
-| init       | `Ti.UI.TableView` | Manually init the widget if it's the child element of the table, or to work around [TC-3417](https://jira.appcelerator.org/browse/TC-3417) in Alloy 1.3.0-cr.
+| show       |            | Show the loading indicator |
+| hide       |            | Hide the loading indicator |
+
+**NOTE:** On Android `refresh()` doesn't show the loading indicator due to a [limitation](https://github.com/iskugor/Ti.SwipeRefreshLayout/issues/4) of the Ti.SwipeRefreshLayout module.
 
 ## Changelog
-* 1.5.1.
+* 2.0
+  * Rewritten to use native API's. 
+* 1.5
   * Workaround for regression in Alloy 1.3.0-cr
   * Closes #17 by checking source of events
-* 1.5
   * New `top` option for compatibility with `Ti.UI.Window.extendEdges` on iOS7
   * Arrow now properly hidden on Android, using opacity
   * Default style updated to match Twitter on iOS7
@@ -135,7 +92,7 @@ You can also manually show and hide the view or trigger the complete cycle of th
 ## License
 
 <pre>
-Copyright 2013 Fokke Zandbergen
+Copyright 2013-2014 Fokke Zandbergen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

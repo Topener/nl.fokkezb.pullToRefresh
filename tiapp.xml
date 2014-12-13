@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><ti:app xmlns:ti="http://ti.appcelerator.org">
+	<id>nl.fokkezb.pullToRefresh.test</id>
+	<name>Alloy Pull to Refresh Widget</name>
+	<version>1.0</version>
+	<publisher>Fokke Zandbergen</publisher>
+	<url>http://fokkezb.nl</url>
+	<description>Alloy Pull to Refresh Widget</description>
+	<copyright>Copyright (c) 2014 Fokke Zandbergen</copyright>
+	<icon>appicon.png</icon>
+	<fullscreen>false</fullscreen>
+	<navbar-hidden>false</navbar-hidden>
+	<analytics>false</analytics>
+	<guid>5402ec0c-aa75-4dd1-b737-579b5433bafc</guid>
+	<property name="ti.ui.defaultunit" type="string">dp</property>
+	<ios>
+		<plist>
+			<dict>
+				<key>UISupportedInterfaceOrientations~iphone</key>
+				<array>
+					<string>UIInterfaceOrientationPortrait</string>
+				</array>
+				<key>UISupportedInterfaceOrientations~ipad</key>
+				<array>
+					<string>UIInterfaceOrientationPortrait</string>
+					<string>UIInterfaceOrientationPortraitUpsideDown</string>
+					<string>UIInterfaceOrientationLandscapeLeft</string>
+					<string>UIInterfaceOrientationLandscapeRight</string>
+				</array>
+				<key>UIRequiresPersistentWiFi</key>
+				<false/>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+				<key>UIStatusBarHidden</key>
+				<false/>
+				<key>UIStatusBarStyle</key>
+				<string>UIStatusBarStyleLightContent</string>
+			</dict>
+		</plist>
+	</ios>
+	<modules>
+		<module platform="android">com.rkam.swiperefreshlayout</module>
+	</modules>
+	<deployment-targets>
+		<target device="android">true</target>
+		<target device="blackberry">false</target>
+		<target device="ipad">true</target>
+		<target device="iphone">true</target>
+		<target device="mobileweb">false</target>
+	</deployment-targets>
+	<sdk-version>3.4.1.GA</sdk-version>
+	<plugins>
+		<plugin version="1.0">ti.alloy</plugin>
+	</plugins>
+</ti:app>

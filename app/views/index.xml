@@ -1,0 +1,25 @@
+<Alloy>
+
+  <TabGroup>
+
+    <Tab title="ListView">
+      <Window title="ListView">
+        <Widget id="ptrListView" src="nl.fokkezb.pullToRefresh" onRelease="refresh" targetId="listSection">
+          <ListView>
+            <ListSection id="listSection" />
+          </ListView>
+        </Widget>
+      </Window>
+    </Tab>
+
+    <Tab title="TableView">
+      <Window title="TableView">
+        <Widget id="ptrTableView" src="nl.fokkezb.pullToRefresh" onRelease="refresh" targetId="tableView">
+          <TableView id="tableView" />
+        </Widget>
+      </Window>
+    </Tab>
+
+  </TabGroup>
+
+</Alloy>

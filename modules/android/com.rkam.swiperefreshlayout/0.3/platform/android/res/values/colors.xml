@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Declare SwipeRefreshLayout color scheme here -->
+	<color name="color1">#1996BE</color>
+	<color name="color2">#48B6D9</color>
+	<color name="color3">#80D3ED</color>
+	<color name="color4">#C2F0FF</color>
+</resources>

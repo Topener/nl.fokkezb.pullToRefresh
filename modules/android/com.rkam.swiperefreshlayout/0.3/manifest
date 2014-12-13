@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.3
+apiversion: 2
+description: My module
+author: Raymond Kam
+license: Specify your license
+copyright: Copyright (c) 2014 by Your Company
+
+
+# these should not be edited
+name: swiperefreshlayout
+moduleid: com.rkam.swiperefreshlayout
+guid: fc0f2168-ac27-4239-bcb0-c51d7683eb05
+platform: android
+minsdk: 3.2.3.GA

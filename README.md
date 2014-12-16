@@ -18,13 +18,11 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 ![iOS](ios.gif)
 
 ## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
-1. If you need Android support, install Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout) via [gitTio](http://gitt.io):
+1. Download and install the [latest distribution](https://github.com/iskugor/Ti.SwipeRefreshLayout/tree/master/dist) of Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout).
 
-    `gittio install com.rkam.swiperefreshlayout`
+2. Install [nl.fokkezb.pullToRefresh](http://gitt.io/component/nl.fokkezb.pullToRefresh) via [gitTio](http://gitt.io):
 
-2. Then install [nl.fokkezb.pullToRefresh](http://gitt.io/component/nl.fokkezb.drawer) via [gitTio](http://gitt.io) as well:
-
-	`gittio install nl.fokkezb.drawer`
+	`gittio install nl.fokkezb.pullToRefresh`
 
 3. Wrap the widget around your `<ListView>` or `<TableView>` in the view:
 

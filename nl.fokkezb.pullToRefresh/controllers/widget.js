@@ -64,8 +64,7 @@ function show() {
     refreshControl.beginRefreshing();
 
   } else if (OS_ANDROID) {
-    // FIXME: https://github.com/iskugor/Ti.SwipeRefreshLayout/issues/4
-    // refreshControl.setRefreshing(true);
+    refreshControl.setRefreshing(true);
   }
 }
 

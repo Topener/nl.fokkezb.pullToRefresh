@@ -18,7 +18,7 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 ![iOS](ios.gif)
 
 ## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
-1. If you need Android support, install Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout) via [gitTio](http://gitt.io):
+1. If you need Android support, install Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout) via [gitTio](http://gitt.io), version 0.4.1 or later:
 
     `gittio install com.rkam.swiperefreshlayout`
 
@@ -61,9 +61,9 @@ Both platforms share the same API:
 | show       |            | Show the loading indicator |
 | hide       |            | Hide the loading indicator |
 
-**NOTE:** On Android `refresh()` doesn't show the loading indicator due to a [limitation](https://github.com/iskugor/Ti.SwipeRefreshLayout/issues/4) of the Ti.SwipeRefreshLayout module.
-
 ## Changelog
+* 2.0.1
+  * Re-enabled `refresh()` for Android now Ti.SwipeRefreshLayout [is fixed](https://github.com/iskugor/Ti.SwipeRefreshLayout/issues/4#issuecomment-68215376)
 * 2.0
   * Rewritten to use native API's. 
 * 1.5

@@ -60,8 +60,8 @@ Both platforms share the same API:
 | hide       |            | Hide the loading indicator |
 
 ## Changelog
-* 2.0.1
-  * Re-enabled `refresh()` for Android now Ti.SwipeRefreshLayout [is fixed](https://github.com/iskugor/Ti.SwipeRefreshLayout/issues/4#issuecomment-68215376)
+* 2.1
+  * Adds support for [TiCollectionView](https://github.com/mpociot/TiCollectionView) by [@adesugbaa](https://github.com/adesugbaa).
 * 2.0
   * Rewritten to use native API's. 
 * 1.5
@@ -90,7 +90,7 @@ Both platforms share the same API:
 ## License
 
 <pre>
-Copyright 2013-2014 Fokke Zandbergen
+Copyright 2013-2015 Fokke Zandbergen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

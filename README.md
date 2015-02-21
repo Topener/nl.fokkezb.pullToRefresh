@@ -28,14 +28,18 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 
 		<Alloy>
 			<Collection src="myCollection" />
-			<Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myRefresher">
-				<ListView>
-					<ListSection dataCollection="myCollection">
-						<ListItem title="{title}" />
-					</ListSection>
-				</ListView>
-			</Widget>
+			<Window>
+				<Widget id="ptr" src="nl.fokkezb.pullToRefresh" onRelease="myRefresher">
+					<ListView>
+						<ListSection dataCollection="myCollection">
+							<ListItem title="{title}" />
+						</ListSection>
+					</ListView>
+				</Widget>
+			</Window>
 		</Alloy>
+
+	**NOTE:** The `<Widget />` tag can't be the root element due to an Alloy limitation!
 
 4. Add your `myRefresher` function to the controller and call the `e.hide()` callback when you're done:
 

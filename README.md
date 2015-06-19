@@ -1,5 +1,4 @@
-# Alloy *Pull to Refresh* Widget
-[![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://appcelerator.com/alloy/)
+# Alloy *Pull to Refresh* Widget [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/nl.fokkezb.pullToRefresh) [![NPM](https://img.shields.io/npm/v/ti-module-nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/ti-module-nl.fokkezb.pulltorefresh)
 
 The [Alloy](http://appcelerator.com/alloy) *Pull to Refresh* widget is a cross-platform no-brainer wrapper of [Ti.UI.RefreshControl](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.RefreshControl) for iOS and Ivan's fork of [Ti.SwipeRefreshLayout](https://github.com/iskugor/Ti.SwipeRefreshLayout) for Android.
 
@@ -7,7 +6,7 @@ Before version 2.0.0 this widget emulated the native Pull to Refresh concept for
 
 Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.infiniteScroll) widget.
 
-## Screencasts
+## Examples
 
 ### Android
 
@@ -17,12 +16,17 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 
 ![iOS](ios.gif)
 
-## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
+## Usage
+
 1. Download and install the [distribution](https://github.com/iskugor/Ti.SwipeRefreshLayout/tree/master/dist) 0.4.1 or later of Ivan's fork of [Ti.SwipeRefreshLayout](http://gitt.io/component/com.rkam.swiperefreshlayout).
 
-2. Install [nl.fokkezb.pullToRefresh](http://gitt.io/component/nl.fokkezb.pullToRefresh) via [gitTio](http://gitt.io):
+2. Install the widget via gitTio: [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/nl.fokkezb.pullToRefresh)
 
 	`gittio install nl.fokkezb.pullToRefresh`
+	
+  Or NPM: [![NPM](https://img.shields.io/npm/v/ti-module-nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/ti-module-nl.fokkezb.pulltorefresh)
+  
+    `npm i --save nl.fokkezb.pulltorefresh`
 
 3. Wrap the widget around your `<ListView>` or `<TableView>` in the view:
 

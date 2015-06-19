@@ -1,4 +1,4 @@
-# Alloy *Pull to Refresh* Widget [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/nl.fokkezb.pullToRefresh) [![NPM](https://img.shields.io/npm/v/ti-module-nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/ti-module-nl.fokkezb.pulltorefresh)
+# Alloy *Pull to Refresh* Widget [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/nl.fokkezb.pullToRefresh) [![NPM](https://img.shields.io/npm/v/nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/nl.fokkezb.pulltorefresh)
 
 The [Alloy](http://appcelerator.com/alloy) *Pull to Refresh* widget is a cross-platform no-brainer wrapper of [Ti.UI.RefreshControl](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.RefreshControl) for iOS and Ivan's fork of [Ti.SwipeRefreshLayout](https://github.com/iskugor/Ti.SwipeRefreshLayout) for Android.
 
@@ -24,7 +24,7 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 
 	`gittio install nl.fokkezb.pullToRefresh`
 	
-  Or NPM: [![NPM](https://img.shields.io/npm/v/ti-module-nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/ti-module-nl.fokkezb.pulltorefresh)
+  Or NPM: [![NPM](https://img.shields.io/npm/v/nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/nl.fokkezb.pulltorefresh)
   
     `npm i --save nl.fokkezb.pulltorefresh`
 

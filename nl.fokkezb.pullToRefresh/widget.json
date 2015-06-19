@@ -9,5 +9,8 @@
 	"min-alloy-version": "1.5",
 	"min-titanium-version":"3.4",
 	"tags":"tableview,headerpullview,pulltorefresh,swiperefreshlayout,listview,pullview,refreshcontrol,ticollectionview",
-	"platforms":"ios,android"
+	"platforms":"ios,android",
+	"modules": {
+		"com.rkam.swiperefreshlayout": "*"
+	}
 }

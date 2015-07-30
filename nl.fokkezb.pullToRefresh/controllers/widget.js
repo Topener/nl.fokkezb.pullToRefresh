@@ -12,12 +12,12 @@ $.show = show;
     return;
   }
 
-  if (!_.isArray(args.children) || !_.contains(['Ti.UI.ListView', 'Ti.UI.TableView', 'de.marcelpociot.CollectionView'], args.children[0].apiName)) {
+  if (!_.isArray(args.children) || !_.contains(['Ti.UI.ListView', 'Ti.UI.TableView', 'de.marcelpociot.CollectionView'], args.children[args.children.length-1].apiName)) {
     console.error('[pullToRefresh] is missing required Ti.UI.ListView or Ti.UI.TableView or de.marcelpociot.CollectionView as first child element.');
     return;
   }
 
-  var list = args.children[0];
+  var list = _.last(args.children);
   delete args.children;
 
   _.extend($, args);

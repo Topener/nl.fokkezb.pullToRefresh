@@ -2,13 +2,15 @@
   "version": "2.1.0",
   "appc-npm": {
     "target": {
-      "alloy": "app/widgets/nl.fokkezb.pullToRefresh"
+      "alloy": "app/widgets/nl.fokkezb.pulltorefresh"
     },
     "ignore": [
       "package.json"
-    ]
+    ],
+    "config": {
+      "nl.fokkezb.pullToRefresh": "2.1.0"
+    }
   },
-  "description": "Uniform wrapper for iOS RefreshControl and Android SwipeRefreshLayout.",
   "author": "Fokke Zandbergen",
   "license": "Apache 2.0",
   "name": "nl.fokkezb.pulltorefresh",
@@ -36,5 +38,6 @@
   "bugs": {
     "url": "https://github.com/fokkezb/nl.fokkezb.pullToRefresh/issues"
   },
-  "homepage": "https://github.com/fokkezb/nl.fokkezb.pullToRefresh#readme"
+  "homepage": "https://github.com/fokkezb/nl.fokkezb.pullToRefresh#readme",
+  "description": "Uniform wrapper for iOS RefreshControl and Android SwipeRefreshLayout."
 }

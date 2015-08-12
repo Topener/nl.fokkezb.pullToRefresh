@@ -41,14 +41,16 @@ function install() {
 
   var zipFiles = toArray(appcNPM.unzip);
 
+  // unzip
   if (zipFiles.length > 0) {
 
     if (OS_WINDOWS) {
       mkdirsSync(targetPath);
     }
 
-    unzip(zipFiles, targetPath);
+    unzip(zipFiles, targetPath, configure);
 
+    // copy
   } else {
     var ignore = toArray(appcNPM.ignore);
     ignore.push('appc-npm');
@@ -66,12 +68,115 @@ function install() {
 
     console.log('Copied \'' + __dirname + '\' to \'' + targetPath + '\'');
 
+    configure();
+  }
+
+  // configure tiapp.xml and config.json
+  function configure() {
+
+    // config.json
+    if (appcNPM.config) {
+      var configPath = path.join(target.base, 'app', 'config.json');
+      var config;
+
+      try {
+        config = require(configPath);
+      } catch (e) {
+        config = {};
+      }
+
+      if (!config.dependencies) {
+        config.dependencies = {};
+      }
+
+      for (var id in appcNPM.config) {
+        if (config.dependencies[id] !== appcNPM.config[id]) {
+          config.dependencies[id] = appcNPM.config[id];
+        }
+      }
+
+      try {
+        fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+
+        console.log('Updated app/config.json');
+
+      } catch (e) {
+        die('Could not write updated app/config.json');
+      }
+    }
+
+    // tiapp.xml
+    if (appcNPM.tiapp) {
+      var tiappPath = path.join(target.base, 'tiapp.xml');
+      var tiapp;
+
+      try {
+        tiapp = fs.readFileSync(tiappPath, {
+          encoding: 'utf-8'
+        });
+      } catch (e) {
+        die('Could not read tiapp.xml' + e + ' ' + tiappPath);
+      }
+
+      var add = [];
+
+      appcNPM.tiapp.forEach(function(mod) {
+        var xml = '<module platform="' + mod.platform + '" version="' + mod.version + '">' + mod.name + '</module>';
+
+        var reModule = new RegExp('<module[^>]+>' + mod.name + '</module>');
+
+        // update existing
+        if (reModule.test(tiapp)) {
+          tiapp = tiapp.replace(reModule, xml);
+
+          // queue to be added
+        } else {
+          add.push(xml);
+        }
+      });
+
+      if (add.length > 0) {
+        var reModules = /(\n)?(\s*<\/modules>)/;
+        var reModulesClosed = /<modules\s*\/>/;
+        var reTiapp = /(\n)?(\s*<\/ti:app>)/;
+
+        var xml = '\t\t' + add.join('\n\t\t') + '\n';
+        var modulesXml = '<modules>\n' + xml + '\t</modules>';
+
+        // has <modules>..</modules>
+        if (reModules.test(tiapp)) {
+          tiapp = tiapp.replace(reModules, '$1' + xml + '$2');
+
+          // has <modules/>
+        } else if (reModulesClosed.test(tiapp)) {
+          tiapp = tiapp.replace(reModulesClosed, modulesXml);
+
+          // insert before </ti:app>
+        } else if (reTiapp.test(tiapp)) {
+          tiapp = tiapp.replace(reTiapp, '$1\t' + modulesXml + '\n$2');
+
+          // invalid tiapp.xml
+        } else {
+          die('Could not update tiapp.xml');
+        }
+      }
+
+      try {
+        fs.writeFileSync(tiappPath, tiapp);
+
+        console.log('Updated tiapp.xml');
+
+      } catch (e) {
+        die('Could not write updated tiapp.xml');
+      }
+    }
+
     console.log();
     process.exit(0);
   }
 }
 
-function unzip(files, targetPath) {
+function unzip(files, targetPath, next) {
   var file = files.shift();
   var filePath = path.join(__dirname, file);
   var command;
@@ -80,7 +185,7 @@ function unzip(files, targetPath) {
     command = '/c cd "' + targetPath + '" && jar xf "' + filePath + '"';
 
   } else {
-    command = 'unzip "' + filePath + '" -d "' + targetPath + '"';
+    command = 'unzip -o "' + filePath + '" -d "' + targetPath + '"';
   }
 
   return child_process.exec(command, function(error, stdout, stderr) {
@@ -97,14 +202,13 @@ function unzip(files, targetPath) {
       die(err);
 
     } else {
-      console.log('Unzipped \'' + filePath + '\' to \'' + targetPath + '\'');
+      console.log('Unzipped ' + file);
 
       if (files.length > 0) {
-        unzip(files, targetPath);
+        unzip(files, targetPath, next);
 
       } else {
-        console.log();
-        process.exit(0);
+        next();
       }
     }
   });

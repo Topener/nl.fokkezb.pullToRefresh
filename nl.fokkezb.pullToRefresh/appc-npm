@@ -53,7 +53,7 @@ function install() {
     // copy
   } else {
     var ignore = toArray(appcNPM.ignore);
-    ignore.push('appc-npm');
+    ignore.push('appc-npm', '.gitignore', '.npmignore');
 
     try {
       copySync(__dirname, targetPath, function (fullPath) {

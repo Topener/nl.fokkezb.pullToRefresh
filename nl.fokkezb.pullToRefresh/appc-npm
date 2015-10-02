@@ -311,11 +311,11 @@ function copySync (src, dest, options) {
 function copyFileSync (srcFile, destFile, clobber) {
 
   if (fs.existsSync(destFile) && !clobber) {
-    throw Error('EEXIST')
+    throw Error('EXIST')
   }
 
   // simplified to work with vanilla fs
-  fs.createReadStream(srcFile).pipe(fs.createWriteStream(destFile));
+  fs.writeFileSync(destFile, fs.readFileSync(srcFile));
 }
 
 // https://github.com/jprichardson/node-fs-extra/blob/master/lib/mkdirs/mkdirs.js

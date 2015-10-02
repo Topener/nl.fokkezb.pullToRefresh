@@ -1,9 +1,14 @@
 var refreshControl;
+var list;
 
 $.refresh = refresh;
 
 $.hide = hide;
 $.show = show;
+
+$.getList = function() {
+  return list;
+};
 
 (function constructor(args) {
 
@@ -17,7 +22,7 @@ $.show = show;
     return;
   }
 
-  var list = _.last(args.children);
+  list = _.last(args.children);
   delete args.children;
 
   _.extend($, args);

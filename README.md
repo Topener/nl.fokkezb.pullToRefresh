@@ -68,6 +68,8 @@ Both platforms share the same API:
 | hide       |            | Hide the loading indicator |
 
 ## Changelog
+* 2.2
+  * Adds [getter for List](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/51).
 * 2.1
   * Adds support for [TiCollectionView](https://github.com/mpociot/TiCollectionView) by [@adesugbaa](https://github.com/adesugbaa).
 * 2.0

@@ -73,6 +73,19 @@ function show() {
   }
 }
 
+function setTitle(text){
+	if (text.apiName && text.apiName == 'Ti.UI.AttributedString'){
+		refreshTitle = text;
+	} else {
+		refreshTitle = Ti.UI.createAttributedString({
+    		text: text
+  		});
+	}
+
+	refreshControl.title = refreshTitle;
+}
+exports.setTitle = setTitle;
+
 function onRefreshstart() {
 
   $.trigger('release', {

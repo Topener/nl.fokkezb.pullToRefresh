@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "appc-npm": {
     "target": {
       "alloy": "app/widgets/nl.fokkezb.pulltorefresh"
@@ -8,7 +8,7 @@
       "package.json"
     ],
     "config": {
-      "nl.fokkezb.pullToRefresh": "2.1.1"
+      "nl.fokkezb.pullToRefresh": "2.2.1"
     }
   },
   "author": "Fokke Zandbergen",

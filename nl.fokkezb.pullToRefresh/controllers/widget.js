@@ -31,6 +31,10 @@ $.getList = function() {
     refreshControl = Ti.UI.createRefreshControl();
     refreshControl.addEventListener('refreshstart', onRefreshstart);
 
+    if (args.title) {
+      setTitle(args.title);
+    }
+
     list.refreshControl = refreshControl;
 
     $.addTopLevelView(list);
@@ -76,15 +80,20 @@ function show() {
 exports.show = show;
 
 function setTitle(text){
-	if (text.apiName && text.apiName == 'Ti.UI.AttributedString'){
-		refreshTitle = text;
-	} else {
-		refreshTitle = Ti.UI.createAttributedString({
-    		text: text
-  		});
-	}
 
-	refreshControl.title = refreshTitle;
+  if (OS_IOS) {
+
+  	if (text.apiName && text.apiName == 'Ti.UI.AttributedString'){
+  		refreshTitle = text;
+
+  	} else {
+  		refreshTitle = Ti.UI.createAttributedString({
+      		text: text
+    		});
+  	}
+
+  	refreshControl.title = refreshTitle;
+  }
 }
 exports.setTitle = setTitle;
 

@@ -69,6 +69,8 @@ Both platforms share the same API:
 
 ## Changelog
 * 2.2
+  * [Expose method to set refreshControl title for iOS](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/53/files).
+  * [Exposes hide() and get() methods](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/52).
   * Adds [getter for List](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/51).
 * 2.1
   * Adds support for [TiCollectionView](https://github.com/mpociot/TiCollectionView) by [@adesugbaa](https://github.com/adesugbaa).

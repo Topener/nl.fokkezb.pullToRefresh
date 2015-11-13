@@ -62,6 +62,7 @@ function hide() {
     refreshControl.setRefreshing(false);
   }
 }
+exports.hide = hide;
 
 function show() {
 
@@ -72,6 +73,7 @@ function show() {
     refreshControl.setRefreshing(true);
   }
 }
+exports.show = show;
 
 function onRefreshstart() {
 

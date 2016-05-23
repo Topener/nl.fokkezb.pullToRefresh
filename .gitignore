@@ -2,3 +2,5 @@ app/widgets
 build
 node_modules
 Resources
+/i18n
+/platform

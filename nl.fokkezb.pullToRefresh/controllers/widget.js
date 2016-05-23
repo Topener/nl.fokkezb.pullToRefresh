@@ -3,21 +3,24 @@ var list;
 
 $.refresh = refresh;
 
-$.hide = hide;
 $.show = show;
-
-$.getList = function() {
-  return list;
-};
+$.hide = hide;
+$.setTitle = setTitle;
+$.getList = getList;
 
 (function constructor(args) {
 
   if (!OS_IOS && !OS_ANDROID) {
     console.warn('[pullToRefresh] only supports iOS and Android.');
+
+    if (_.isArray(args.children)) {
+      _.map(args.children, $.addTopLevelView);
+    }
+
     return;
   }
 
-  if (!_.isArray(args.children) || !_.contains(['Ti.UI.ListView', 'Ti.UI.TableView', 'de.marcelpociot.CollectionView'], args.children[args.children.length-1].apiName)) {
+  if (!_.isArray(args.children) || !_.contains(['Titanium.UI.ListView', 'Titanium.UI.TableView', 'Ti.UI.ListView', 'Ti.UI.TableView', 'de.marcelpociot.CollectionView'], args.children[args.children.length-1].apiName)) {
     console.error('[pullToRefresh] is missing required Ti.UI.ListView or Ti.UI.TableView or de.marcelpociot.CollectionView as first child element.');
     return;
   }
@@ -52,12 +55,21 @@ $.getList = function() {
 })(arguments[0] || {});
 
 function refresh() {
+
+  if (!list) {
+    return;
+  }
+
   show();
 
   onRefreshstart();
 }
 
 function hide() {
+
+  if (!refreshControl) {
+    return;
+  }
 
   if (OS_IOS) {
     refreshControl.endRefreshing();
@@ -66,9 +78,12 @@ function hide() {
     refreshControl.setRefreshing(false);
   }
 }
-exports.hide = hide;
 
 function show() {
+
+  if (!refreshControl) {
+    return;
+  }
 
   if (OS_IOS) {
     refreshControl.beginRefreshing();
@@ -77,9 +92,12 @@ function show() {
     refreshControl.setRefreshing(true);
   }
 }
-exports.show = show;
 
 function setTitle(text){
+
+  if (!refreshControl) {
+    return;
+  }
 
   if (OS_IOS) {
 
@@ -95,7 +113,10 @@ function setTitle(text){
   	refreshControl.title = refreshTitle;
   }
 }
-exports.setTitle = setTitle;
+
+function getList() {
+  return list;
+}
 
 function onRefreshstart() {
 

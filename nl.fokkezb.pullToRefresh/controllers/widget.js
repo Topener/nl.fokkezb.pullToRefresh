@@ -7,6 +7,7 @@ $.show = show;
 $.hide = hide;
 $.setTitle = setTitle;
 $.getList = getList;
+$.getControl = getControl;
 
 (function constructor(args) {
 
@@ -116,6 +117,10 @@ function setTitle(text){
 
 function getList() {
   return list;
+}
+
+function getControl() {
+  return refreshControl;
 }
 
 function onRefreshstart() {

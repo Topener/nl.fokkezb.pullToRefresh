@@ -5,7 +5,6 @@ $.refresh = refresh;
 
 $.show = show;
 $.hide = hide;
-$.setTitle = setTitle;
 $.getList = getList;
 $.getControl = getControl;
 
@@ -32,21 +31,17 @@ $.getControl = getControl;
   _.extend($, args);
 
   if (OS_IOS) {
-    refreshControl = Ti.UI.createRefreshControl();
+    refreshControl = Ti.UI.createRefreshControl(args);
     refreshControl.addEventListener('refreshstart', onRefreshstart);
-
-    if (args.title) {
-      setTitle(args.title);
-    }
 
     list.refreshControl = refreshControl;
 
     $.addTopLevelView(list);
 
   } else if (OS_ANDROID) {
-    refreshControl = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
+    refreshControl = require('com.rkam.swiperefreshlayout').createSwipeRefresh(_.extend({
       view: list
-    });
+    }, args));
 
     refreshControl.addEventListener('refreshing', onRefreshstart);
 
@@ -91,27 +86,6 @@ function show() {
 
   } else if (OS_ANDROID) {
     refreshControl.setRefreshing(true);
-  }
-}
-
-function setTitle(text){
-
-  if (!refreshControl) {
-    return;
-  }
-
-  if (OS_IOS) {
-
-  	if (text.apiName && text.apiName == 'Ti.UI.AttributedString'){
-  		refreshTitle = text;
-
-  	} else {
-  		refreshTitle = Ti.UI.createAttributedString({
-      		text: text
-    		});
-  	}
-
-  	refreshControl.title = refreshTitle;
   }
 }
 

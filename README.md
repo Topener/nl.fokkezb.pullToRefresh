@@ -58,6 +58,8 @@ Also take a look at the [Infinite Scroll](https://github.com/FokkeZB/nl.fokkezb.
 
 		$.ptr.refresh();
 		
+6. To pass arguments to [`Ti.UI.createRefreshControl`](http://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI-method-createRefreshControl) and [`createSwipeRefresh()`](https://github.com/iskugor/Ti.SwipeRefreshLayout#to-initialize) simply pass them to the widget as attributes of `<Widget>` or second arguments of `createWidget()`.
+		
 ## Methods
 Both platforms share the same API:
 
@@ -66,8 +68,13 @@ Both platforms share the same API:
 | refresh    |            | Manually trigger pull + release |
 | show       |            | Show the loading indicator |
 | hide       |            | Hide the loading indicator |
+| getList    |            | Get the list the widget is bound to
+| getControl |            | Get the refresh control
 
 ## Changelog
+* 3.0
+  * Removes `setTitle()`.
+  * Passes all arguments/attributes on to `Ti.UI.createRefreshControl()` for iOS (e.g. to set title or tintColor) and `createSwipeRefresh()` for Android.
 * 2.2
   * [Expose method to set refreshControl title for iOS](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/53/files).
   * [Exposes hide() and get() methods](https://github.com/FokkeZB/nl.fokkezb.pullToRefresh/pull/52).

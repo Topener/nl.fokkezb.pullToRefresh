@@ -1,5 +1,5 @@
 {
-  "version": "2.2.3",
+  "version": "3.0.0",
   "appc-npm": {
     "target": {
       "alloy": "app/widgets/nl.fokkezb.pulltorefresh"

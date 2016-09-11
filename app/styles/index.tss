@@ -5,3 +5,11 @@
 "Window": {
 	backgroundColor: 'white'
 }
+
+"#ptrListView[ios]": {
+	tintColor: '#F00'
+}
+
+"#ptrTableView[ios]": {
+	tintColor: '#F00'
+}

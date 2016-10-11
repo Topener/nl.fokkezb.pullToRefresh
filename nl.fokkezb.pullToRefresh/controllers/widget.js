@@ -10,8 +10,8 @@ $.getControl = getControl;
 
 (function constructor(args) {
 
-  if (!OS_IOS && !OS_ANDROID) {
-    console.warn('[pullToRefresh] only supports iOS and Android.');
+  if (args.noShow || (!OS_IOS && !OS_ANDROID)){
+    if (!args.noShow) console.warn('[pullToRefresh] only supports iOS and Android.');
 
     if (_.isArray(args.children)) {
       _.map(args.children, $.addTopLevelView);

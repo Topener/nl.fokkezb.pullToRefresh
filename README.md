@@ -1,6 +1,8 @@
 # Alloy *Pull to Refresh* Widget
 [![gitTio](http://gitt.io/badge.svg)](http://gitt.io/component/nl.fokkezb.pullToRefresh) [![NPM](https://img.shields.io/npm/v/nl.fokkezb.pulltorefresh.svg?style=flat-square)](https://www.npmjs.com/package/nl.fokkezb.pulltorefresh) [![René Pot](https://img.shields.io/badge/maintainer-René_Pot-yellow.svg?style=flat-square)](https://github.com/Topener)
 
+**NOTE: Starting TiSDK 6.2 this widget is no longer needed as RefreshControl is build in for Android like previously for iOS, you can stick with the Ti.UI.RefreshControl**
+
 The [Alloy](http://appcelerator.com/alloy) *Pull to Refresh* widget is a cross-platform no-brainer wrapper of [Ti.UI.RefreshControl](http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.RefreshControl) for iOS and Ivan's fork of [Ti.SwipeRefreshLayout](https://github.com/iskugor/Ti.SwipeRefreshLayout) for Android.
 
 Before version 2.0.0 this widget emulated the native Pull to Refresh concept for `Ti.UI.TableView` on both platforms. Since 2.0.0 it uses the native controls now available in Titanium Core and through Ivan's module for both `Ti.UI.TableView` and `Ti.UI.ListView`.
